@@ -76,7 +76,8 @@ class BTTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = BTTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell", configuration: self.configuration)
-        cell.textLabel?.text = self.items[(indexPath as NSIndexPath).row]
+        let text = self.items[(indexPath as NSIndexPath).row]
+        cell.textLabel?.text = self.configuration.cellTextUppercased ? text.uppercased() : text
         cell.checkmarkIcon.isHidden = ((indexPath as NSIndexPath).row == selectedIndexPath) ? false : true
         return cell
     }
@@ -101,7 +102,9 @@ class BTTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if self.configuration.shouldKeepSelectedCellColor == true {
             cell.backgroundColor = self.configuration.cellBackgroundColor
-            cell.contentView.backgroundColor = ((indexPath as NSIndexPath).row == selectedIndexPath) ? self.configuration.cellSelectionColor : self.configuration.cellBackgroundColor
+            let selected = ((indexPath as NSIndexPath).row == selectedIndexPath)
+            cell.contentView.backgroundColor = selected ? self.configuration.cellSelectionColor : self.configuration.cellBackgroundColor
+            cell.textLabel?.textColor = selected ? self.configuration.selectedCellTextLabelColor: self.configuration.cellTextLabelColor
         }
     }
 }

@@ -44,6 +44,9 @@ final class BTConfiguration {
     var maskBackgroundOpacity: CGFloat!
     var shouldChangeTitleText: Bool!
     
+    var cellTextUppercased: Bool!
+    var visibleCellsCount: Float?
+    
     init() {
         self.defaultValue()
     }
@@ -76,5 +79,6 @@ final class BTConfiguration {
         self.maskBackgroundColor = UIColor.black
         self.maskBackgroundOpacity = 0.3
         self.shouldChangeTitleText = true
+        self.cellTextUppercased = false
     }
 }

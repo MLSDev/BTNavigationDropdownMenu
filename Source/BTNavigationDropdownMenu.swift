@@ -219,6 +219,26 @@ open class BTNavigationDropdownMenu: UIView {
             self.configuration.shouldChangeTitleText = value
         }
     }
+    
+    // Text in cell should be uppercased. Default is false
+    open var cellTextUppercased: Bool {
+        get { return self.configuration.cellTextUppercased }
+        set(value) { self.configuration.cellTextUppercased = value }
+    }
+    
+    // Visible number of cells. Can be float, for example we want to see 3 cells and show that there are more cells to see. Default is nil
+    open var visibleCellsCount: Float? {
+        get { return self.configuration.visibleCellsCount }
+        set(value) {
+            self.configuration.visibleCellsCount = value
+            guard let count = value else  { return }
+            guard let bounds = UIApplication.shared.keyWindow?.bounds else { return }
+            let height = CGFloat(count) * configuration.cellHeight
+            if height >  bounds.height { return }
+            let heightToSet = height + 300
+            tableView.frame = CGRect(x: tableView.frame.origin.x, y: tableView.frame.origin.y, width: tableView.frame.width, height: heightToSet)
+        }
+    }
 
     open var didSelectItemAtIndexHandler: ((_ indexPath: Int) -> ())?
     open var isShown: Bool!
