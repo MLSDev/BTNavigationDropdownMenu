@@ -76,8 +76,11 @@ class BTTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = BTTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell", configuration: self.configuration)
+//        cell.textLabel?.text = self.items[(indexPath as NSIndexPath).row]
         let text = self.items[(indexPath as NSIndexPath).row]
-        cell.textLabel?.text = self.configuration.cellTextUppercased ? text.uppercased() : text
+        let uppercased = configuration.cellTextUppercased ?? false
+        cell.textLabel?.text = uppercased ? text.uppercased() : text
+//        cell.textLabel?.text = self.configuration.cellTextUppercased ? text.uppercased() : text
         cell.checkmarkIcon.isHidden = ((indexPath as NSIndexPath).row == selectedIndexPath) ? false : true
         return cell
     }

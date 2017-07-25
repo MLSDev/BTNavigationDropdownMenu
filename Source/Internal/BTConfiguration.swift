@@ -25,33 +25,29 @@ import UIKit
 
 final class BTConfiguration {
     var menuTitleColor: UIColor?
-    var cellHeight: CGFloat!
+    var cellHeight: CGFloat
     var cellBackgroundColor: UIColor?
     var cellSeparatorColor: UIColor?
     var cellTextLabelColor: UIColor?
     var selectedCellTextLabelColor: UIColor?
-    var cellTextLabelFont: UIFont!
-    var navigationBarTitleFont: UIFont!
-    var cellTextLabelAlignment: NSTextAlignment!
+    var cellTextLabelFont: UIFont
+    var navigationBarTitleFont: UIFont
+    var cellTextLabelAlignment: NSTextAlignment
     var cellSelectionColor: UIColor?
     var checkMarkImage: UIImage!
-    var shouldKeepSelectedCellColor: Bool!
+    var shouldKeepSelectedCellColor: Bool
     var arrowTintColor: UIColor?
     var arrowImage: UIImage!
-    var arrowPadding: CGFloat!
-    var animationDuration: TimeInterval!
-    var maskBackgroundColor: UIColor!
-    var maskBackgroundOpacity: CGFloat!
-    var shouldChangeTitleText: Bool!
+    var arrowPadding: CGFloat
+    var animationDuration: TimeInterval
+    var maskBackgroundColor: UIColor
+    var maskBackgroundOpacity: CGFloat
+    var shouldChangeTitleText: Bool
     
-    var cellTextUppercased: Bool!
+    var cellTextUppercased: Bool
     var visibleCellsCount: Float?
     
     init() {
-        self.defaultValue()
-    }
-    
-    func defaultValue() {
         // Path for image
         let bundle = Bundle(for: BTConfiguration.self)
         let url = bundle.url(forResource: "BTNavigationDropdownMenu", withExtension: "bundle")
@@ -67,8 +63,8 @@ final class BTConfiguration {
         self.cellSeparatorColor = UIColor.darkGray
         self.cellTextLabelColor = UIColor.darkGray
         self.selectedCellTextLabelColor = UIColor.darkGray
-        self.cellTextLabelFont = UIFont(name: "HelveticaNeue-Bold", size: 17)
-        self.navigationBarTitleFont = UIFont(name: "HelveticaNeue-Bold", size: 17)
+        self.cellTextLabelFont = UIFont(name: "HelveticaNeue-Bold", size: 17) ?? UIFont.systemFont(ofSize: 17)
+        self.navigationBarTitleFont = UIFont(name: "HelveticaNeue-Bold", size: 17) ?? UIFont.boldSystemFont(ofSize: 17)
         self.cellTextLabelAlignment = NSTextAlignment.left
         self.cellSelectionColor = UIColor.lightGray
         self.checkMarkImage = UIImage(contentsOfFile: checkMarkImagePath!)
