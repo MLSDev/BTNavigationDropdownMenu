@@ -61,7 +61,7 @@ class BTTableViewCell: UITableViewCell {
         }
         self.checkmarkIcon.isHidden = true
         self.checkmarkIcon.image = self.configuration.checkMarkImage
-        self.checkmarkIcon.contentMode = UIViewContentMode.scaleAspectFill
+        self.checkmarkIcon.contentMode = UIViewContentMode.center
         self.contentView.addSubview(self.checkmarkIcon)
         
         // Separator for cell
