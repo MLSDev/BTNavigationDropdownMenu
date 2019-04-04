@@ -38,20 +38,20 @@ class BTTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     init(frame: CGRect, items: [String], title: String, configuration: BTConfiguration) {
-        super.init(frame: frame, style: UITableViewStyle.plain)
+        super.init(frame: frame, style: UITableView.Style.plain)
         
         self.items = items
-        self.selectedIndexPath = items.index(of: title)
+        self.selectedIndexPath = items.firstIndex(of: title)
         self.configuration = configuration
         
         // Setup table view
         self.delegate = self
         self.dataSource = self
         self.backgroundColor = UIColor.clear
-        self.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.separatorStyle = UITableViewCell.SeparatorStyle.none
         self.showsVerticalScrollIndicator = false
         //        self.separatorEffect = UIBlurEffect(style: .Light)
-        self.autoresizingMask = UIViewAutoresizing.flexibleWidth
+        self.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
         self.tableFooterView = UIView(frame: CGRect.zero)
     }
     
@@ -76,7 +76,7 @@ class BTTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = BTTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell", configuration: self.configuration)
+        let cell = BTTableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "Cell", configuration: self.configuration)
         let text = self.items[(indexPath as NSIndexPath).row]
         cell.textLabel?.text = self.configuration.cellTextUppercased ? text.uppercased() : text
         cell.checkmarkIcon.isHidden = ((indexPath as NSIndexPath).row == selectedIndexPath) ? false : true

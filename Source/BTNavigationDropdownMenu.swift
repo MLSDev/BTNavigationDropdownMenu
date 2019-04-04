@@ -30,9 +30,9 @@ import UIKit
 open class BTNavigationDropdownMenu: UIView {
 
     // The color of menu title. Default is darkGrayColor()
-    open var menuTitleColor: UIColor! {
+    open var menuTitleColor: UIColor {
         get {
-            return self.configuration.menuTitleColor
+            return self.configuration.menuTitleColor ?? .clear
         }
         set(value) {
             self.configuration.menuTitleColor = value
@@ -40,19 +40,19 @@ open class BTNavigationDropdownMenu: UIView {
     }
 
     // The height of the cell. Default is 50
-    open var cellHeight: NSNumber! {
+    open var cellHeight: NSNumber {
         get {
-            return self.configuration.cellHeight as NSNumber!
+            return NSNumber(nonretainedObject: self.configuration.cellHeight)
         }
         set(value) {
-            self.configuration.cellHeight = CGFloat(value)
+            self.configuration.cellHeight = CGFloat(truncating: value)
         }
     }
 
     // The color of the cell background. Default is whiteColor()
-    open var cellBackgroundColor: UIColor! {
+    open var cellBackgroundColor: UIColor {
         get {
-            return self.configuration.cellBackgroundColor
+            return self.configuration.cellBackgroundColor ?? .clear
         }
         set(color) {
             self.configuration.cellBackgroundColor = color
@@ -60,7 +60,7 @@ open class BTNavigationDropdownMenu: UIView {
     }
 
     // The tint color of the arrow. Default is whiteColor()
-    open var arrowTintColor: UIColor! {
+    open var arrowTintColor: UIColor {
         get {
             return self.menuArrow.tintColor
         }
@@ -69,9 +69,9 @@ open class BTNavigationDropdownMenu: UIView {
         }
     }
 
-    open var cellSeparatorColor: UIColor! {
+    open var cellSeparatorColor: UIColor {
         get {
-            return self.configuration.cellSeparatorColor
+            return self.configuration.cellSeparatorColor ?? .clear
         }
         set(value) {
             self.configuration.cellSeparatorColor = value
@@ -79,9 +79,9 @@ open class BTNavigationDropdownMenu: UIView {
     }
 
     // The color of the text inside cell. Default is darkGrayColor()
-    open var cellTextLabelColor: UIColor! {
+    open var cellTextLabelColor: UIColor {
         get {
-            return self.configuration.cellTextLabelColor
+            return self.configuration.cellTextLabelColor ?? .clear
         }
         set(value) {
             self.configuration.cellTextLabelColor = value
@@ -89,9 +89,9 @@ open class BTNavigationDropdownMenu: UIView {
     }
 
     // The color of the text inside a selected cell. Default is darkGrayColor()
-    open var selectedCellTextLabelColor: UIColor! {
+    open var selectedCellTextLabelColor: UIColor {
         get {
-            return self.configuration.selectedCellTextLabelColor
+            return self.configuration.selectedCellTextLabelColor ?? .clear
         }
         set(value) {
             self.configuration.selectedCellTextLabelColor = value
@@ -99,7 +99,7 @@ open class BTNavigationDropdownMenu: UIView {
     }
 
     // The font of the text inside cell. Default is HelveticaNeue-Bold, size 17
-    open var cellTextLabelFont: UIFont! {
+    open var cellTextLabelFont: UIFont {
         get {
             return self.configuration.cellTextLabelFont
         }
@@ -109,7 +109,7 @@ open class BTNavigationDropdownMenu: UIView {
     }
 
     // The font of the navigation bar title. Default is HelveticaNeue-Bold, size 17
-    open var navigationBarTitleFont: UIFont! {
+    open var navigationBarTitleFont: UIFont {
         get {
             return self.configuration.navigationBarTitleFont
         }
@@ -120,7 +120,7 @@ open class BTNavigationDropdownMenu: UIView {
     }
 
     // The alignment of the text inside cell. Default is .Left
-    open var cellTextLabelAlignment: NSTextAlignment! {
+    open var cellTextLabelAlignment: NSTextAlignment {
         get {
             return self.configuration.cellTextLabelAlignment
         }
@@ -130,9 +130,9 @@ open class BTNavigationDropdownMenu: UIView {
     }
 
     // The color of the cell when the cell is selected. Default is lightGrayColor()
-    open var cellSelectionColor: UIColor! {
+    open var cellSelectionColor: UIColor {
         get {
-            return self.configuration.cellSelectionColor
+            return self.configuration.cellSelectionColor ?? .clear
         }
         set(value) {
             self.configuration.cellSelectionColor = value
@@ -140,7 +140,7 @@ open class BTNavigationDropdownMenu: UIView {
     }
 
     // The checkmark icon of the cell
-    open var checkMarkImage: UIImage! {
+    open var checkMarkImage: UIImage {
         get {
             return self.configuration.checkMarkImage
         }
@@ -150,7 +150,7 @@ open class BTNavigationDropdownMenu: UIView {
     }
 
     // The boolean value that decides if selected color of cell is visible when the menu is shown. Default is false
-    open var shouldKeepSelectedCellColor: Bool! {
+    open var shouldKeepSelectedCellColor: Bool {
         get {
             return self.configuration.shouldKeepSelectedCellColor
         }
@@ -160,7 +160,7 @@ open class BTNavigationDropdownMenu: UIView {
     }
 
     // The animation duration of showing/hiding menu. Default is 0.3
-    open var animationDuration: TimeInterval! {
+    open var animationDuration: TimeInterval {
         get {
             return self.configuration.animationDuration
         }
@@ -170,7 +170,7 @@ open class BTNavigationDropdownMenu: UIView {
     }
 
     // The arrow next to navigation title
-    open var arrowImage: UIImage! {
+    open var arrowImage: UIImage {
         get {
             return self.configuration.arrowImage
         }
@@ -181,7 +181,7 @@ open class BTNavigationDropdownMenu: UIView {
     }
 
     // The padding between navigation title and arrow
-    open var arrowPadding: CGFloat! {
+    open var arrowPadding: CGFloat {
         get {
             return self.configuration.arrowPadding
         }
@@ -191,7 +191,7 @@ open class BTNavigationDropdownMenu: UIView {
     }
 
     // The color of the mask layer. Default is blackColor()
-    open var maskBackgroundColor: UIColor! {
+    open var maskBackgroundColor: UIColor {
         get {
             return self.configuration.maskBackgroundColor
         }
@@ -201,7 +201,7 @@ open class BTNavigationDropdownMenu: UIView {
     }
 
     // The opacity of the mask layer. Default is 0.3
-    open var maskBackgroundOpacity: CGFloat! {
+    open var maskBackgroundOpacity: CGFloat {
         get {
             return self.configuration.maskBackgroundOpacity
         }
@@ -211,7 +211,7 @@ open class BTNavigationDropdownMenu: UIView {
     }
 
     // The boolean value that decides if you want to change the title text when a cell is selected. Default is true
-    open var shouldChangeTitleText: Bool! {
+    open var shouldChangeTitleText: Bool {
         get {
             return self.configuration.shouldChangeTitleText
         }
@@ -314,7 +314,7 @@ open class BTNavigationDropdownMenu: UIView {
             titleToDisplay = title
         }
 
-        titleSize = (titleToDisplay as NSString).size(attributes: [NSFontAttributeName:self.configuration.navigationBarTitleFont])
+        titleSize = (titleToDisplay as NSString).size(withAttributes: [NSAttributedString.Key.font:self.configuration.navigationBarTitleFont])
 
         // Set frame
         let frame = CGRect(x: 0, y: 0, width: titleSize.width + (self.configuration.arrowPadding + self.configuration.arrowImage.size.width)*2, height: self.navigationController!.navigationBar.frame.height)
@@ -326,7 +326,7 @@ open class BTNavigationDropdownMenu: UIView {
 
         // Init button as navigation title
         self.menuButton = UIButton(frame: frame)
-        self.menuButton.addTarget(self, action: #selector(BTNavigationDropdownMenu.menuButtonTapped(_:)), for: UIControlEvents.touchUpInside)
+        self.menuButton.addTarget(self, action: #selector(BTNavigationDropdownMenu.menuButtonTapped(_:)), for: UIControl.Event.touchUpInside)
         self.addSubview(self.menuButton)
 
         self.menuTitle = UILabel(frame: frame)
@@ -368,7 +368,7 @@ open class BTNavigationDropdownMenu: UIView {
                 return
             }
             selfie.didSelectItemAtIndexHandler!(indexPath)
-            if selfie.shouldChangeTitleText! {
+            if selfie.shouldChangeTitleText {
                 selfie.setMenuTitle("\(selfie.tableView.items[indexPath])")
             }
             self?.hideMenu()
@@ -381,7 +381,7 @@ open class BTNavigationDropdownMenu: UIView {
 
         // Add Line on top
         self.topSeparator = UIView(frame: CGRect(x: 0, y: 0, width: menuWrapperBounds.size.width, height: 0.5))
-        self.topSeparator.autoresizingMask = UIViewAutoresizing.flexibleWidth
+        self.topSeparator.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
         self.menuWrapper.addSubview(self.topSeparator)
 
         // Remove MenuWrapper from container view to avoid leaks
@@ -437,18 +437,18 @@ open class BTNavigationDropdownMenu: UIView {
         self.tableView.selectedIndexPath = index
         self.tableView.reloadData()
 
-        if self.shouldChangeTitleText! {
+        if self.shouldChangeTitleText {
             self.setMenuTitle("\(self.tableView.items[index])")
         }
     }
 
     func setupDefaultConfiguration() {
-        self.menuTitleColor = self.navigationController?.navigationBar.titleTextAttributes?[NSForegroundColorAttributeName] as? UIColor
-        self.cellBackgroundColor = self.navigationController?.navigationBar.barTintColor
-        self.cellSeparatorColor = self.navigationController?.navigationBar.titleTextAttributes?[NSForegroundColorAttributeName] as? UIColor
-        self.cellTextLabelColor = self.navigationController?.navigationBar.titleTextAttributes?[NSForegroundColorAttributeName] as? UIColor
+        self.menuTitleColor = self.navigationController?.navigationBar.titleTextAttributes?[NSAttributedString.Key.foregroundColor] as? UIColor ?? .clear
+        self.cellBackgroundColor = self.navigationController?.navigationBar.barTintColor ?? .clear
+        self.cellSeparatorColor = self.navigationController?.navigationBar.titleTextAttributes?[NSAttributedString.Key.foregroundColor] as? UIColor ?? .clear
+        self.cellTextLabelColor = self.navigationController?.navigationBar.titleTextAttributes?[NSAttributedString.Key.foregroundColor] as? UIColor ?? .clear
 
-        self.arrowTintColor = self.configuration.arrowTintColor
+        self.arrowTintColor = self.configuration.arrowTintColor ?? .clear
     }
 
     func showMenu() {
@@ -478,7 +478,7 @@ open class BTNavigationDropdownMenu: UIView {
         // Reload data to dismiss highlight color of selected cell
         self.tableView.reloadData()
 
-        self.menuWrapper.superview?.bringSubview(toFront: self.menuWrapper)
+        self.menuWrapper.superview?.bringSubviewToFront(self.menuWrapper)
 
         UIView.animate(
             withDuration: self.configuration.animationDuration * 1.5,
@@ -493,7 +493,7 @@ open class BTNavigationDropdownMenu: UIView {
         )
     }
 
-    func hideMenu() {
+    @objc func hideMenu() {
         // Rotate arrow
         self.rotateArrow()
 
@@ -517,7 +517,7 @@ open class BTNavigationDropdownMenu: UIView {
         UIView.animate(
             withDuration: self.configuration.animationDuration,
             delay: 0,
-            options: UIViewAnimationOptions(),
+            options: UIView.AnimationOptions(),
             animations: {
                 self.tableView.frame.origin.y = -CGFloat(self.items.count) * self.configuration.cellHeight - 300
                 self.backgroundView.alpha = 0 },
@@ -540,7 +540,7 @@ open class BTNavigationDropdownMenu: UIView {
         self.menuTitle.text = title
     }
     
-    func menuButtonTapped(_ sender: UIButton) {
+    @objc func menuButtonTapped(_ sender: UIButton) {
         self.isShown == true ? hideMenu() : showMenu()
     }
 }
