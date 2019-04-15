@@ -253,6 +253,7 @@ open class BTNavigationDropdownMenu: UIView {
     fileprivate var tableView: BTTableView!
     fileprivate var items: [String]!
     fileprivate var menuWrapper: UIView!
+    private var deinitBlock: (() -> ())?
 
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -343,7 +344,6 @@ open class BTNavigationDropdownMenu: UIView {
 
         // Set up DropdownMenu
         self.menuWrapper = UIView(frame: CGRect(x: menuWrapperBounds.origin.x, y: 0, width: menuWrapperBounds.width, height: menuWrapperBounds.height))
-        self.menuWrapper.viewIdentifier = "BTNavigationDropDownMenu-MenuWrapper"
         self.menuWrapper.clipsToBounds = true
         self.menuWrapper.autoresizingMask = [ .flexibleWidth, .flexibleHeight ]
 
@@ -384,16 +384,23 @@ open class BTNavigationDropdownMenu: UIView {
         self.topSeparator.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
         self.menuWrapper.addSubview(self.topSeparator)
 
-        // Remove MenuWrapper from container view to avoid leaks
-        containerView.subviews
-            .filter({$0.viewIdentifier == "BTNavigationDropDownMenu-MenuWrapper"})
-            .forEach({$0.removeFromSuperview()})
+        deinitBlock = { [menuWrapper] in
+            // Remove MenuWrapper from container view to avoid leaks
+            containerView.subviews
+                .filter({$0 === menuWrapper })
+                .forEach({$0.removeFromSuperview()})
+        }
 
         // Add Menu View to container view
         containerView.addSubview(self.menuWrapper)
 
         // By default, hide menu view
         self.menuWrapper.isHidden = true
+    }
+    
+    deinit {
+        deinitBlock?()
+        deinitBlock = nil
     }
 
     override open func layoutSubviews() {
